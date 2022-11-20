@@ -21,7 +21,7 @@
               
           </nav>
        </div>
-         <form action='http://localhost:3000/VerDoctores' method="GET">
+         <form action='https://clinca.herokuapp.com/VerDoctores' method="GET">
           <table class="table table-striped">
           <thead>
             <tr>
@@ -39,7 +39,7 @@
          
          </table>
          <script>
-         var url = 'http://localhost:3000/VerDoctoresTable';
+         var url = 'https://clinca.herokuapp.com/VerDoctoresTable';
          fetch(url)
               .then(response => response.json())
               .then(listarDoctores => mostrarDoctores(listarDoctores))
