@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<H1>lista de turnos</H1>
+<div class="navbar navbar-expand-lg bg-light">
+    <nav class="nav nav-tabs">
+        <a class="nav-link active" aria-current="page" href="http://localhost:3000/agregarPaciente">Agregar Paciente</a>
+        <a class="nav-link active" aria-current="page"  href="http://localhost:3000/agregarDoctor">Agregar Doctor</a>
+        <a class="nav-link active" aria-current="page" href="http://localhost:3000/VerDoctores">ver Doctores</a>
+        <a class="nav-link active" aria-current="page" href="http://localhost:3000/VerPacientes">ver Pacientes</a>
+        <a class="nav-link active" aria-current="page" href="http://localhost:3000/AgregarTurno">Asignar Turno</a>
+        <a class="nav-link active" aria-current="page" href="http://localhost:3000/MostarTurno">listar turno</a>
+        
+    </nav>
+ </div>
+<body>
+    <h1>Turnos</h1>
+    <form action="http://localhost:3000/MostarTurno" method="GET">
+     <table class="table table-striped">
+     <thead>
+       <tr>
+         <th>N°</th>
+         <th>Fecha</th>
+         <th>Hora</th>
+         <th>Paciente</th>
+         <th>Especialidad</th>
+       </tr>
+     </thead>
+     <tbody id="tabl">
+ 
+     </tbody>
+    </form>
+    
+    </table>
+    <script>
+    var url = 'http://localhost:3000/mostrarTurnosTabla';
+    fetch(url)
+         .then(response => response.json())
+         .then(listarTurnos => mostarTurnos(listarTurnos))
+         .catch(error => console.log(error));
+ 
+         const mostarTurnos = (turnos)=>{
+             var turnosTabla= "";
+ 
+             console.log(turnos);
+             
+             for(var i=0; i<turnos.length; i++){
+               turnosTabla = turnosTabla + "<tr><td>" + i + "</td><td>"+ turnos[i].fecha + "</td><td>"+ turnos[i].hora + "</td><td>"+ turnos[i].paciente + "</td><td>"+ turnos[i].doctor +"</td><td>"+"</tr>";
+             }
+             
+             document.getElementById('tabl').innerHTML=turnosTabla;
+  
+         };
+   
+   </script>
+ </body>
+</html>

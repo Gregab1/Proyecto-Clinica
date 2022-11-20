@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+   
+    <body>
+         <h1>Ver Doctores</h1>
+         <div class="navbar navbar-expand-lg bg-light">
+          <nav class="nav nav-tabs">
+              <a class="nav-link active" aria-current="page" href="http://localhost:3000/agregarPaciente">Agregar Paciente</a>
+              <a class="nav-link active" aria-current="page"  href="http://localhost:3000/agregarDoctor">Agregar Doctor</a>
+              <a class="nav-link active" aria-current="page" href="http://localhost:3000/VerDoctores">ver Doctores</a>
+              <a class="nav-link active" aria-current="page" href="http://localhost:3000/VerPacientes">ver Pacientes</a>
+              <a class="nav-link active" aria-current="page" href="http://localhost:3000/AgregarTurno">Asignar Turno</a>
+              <a class="nav-link active" aria-current="page" href="http://localhost:3000/MostarTurno">listar turno</a>
+              
+          </nav>
+       </div>
+         <form action='http://localhost:3000/VerDoctores' method="GET">
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>matricula</th>
+              <th>profesion</th>
+            </tr>
+          </thead>
+          <tbody id="tables">
+      
+          </tbody>
+         </form>
+         
+         </table>
+         <script>
+         var url = 'http://localhost:3000/VerDoctoresTable';
+         fetch(url)
+              .then(response => response.json())
+              .then(listarDoctores => mostrarDoctores(listarDoctores))
+              .catch(error => console.log(error));
+      
+              const mostrarDoctores = (doctores)=>{
+                  var doctoresTabla= "";
+      
+                  console.log(doctores);
+                  
+                  for(var i=0; i<doctores.length; i++){
+                    doctoresTabla = doctoresTabla + "<tr><td>" + i + "</td><td>"+ doctores[i].nombre + "</td><td>"+ doctores[i].apellido + "</td><td>"+ doctores[i].matricula + "</td><td>"+ doctores[i].profesion +"</td><td>"+"</tr>";
+                  }
+                  
+                  document.getElementById('tables').innerHTML=doctoresTabla;
+       
+              };
+        
+        </script>
+      </body>
+
+</html>

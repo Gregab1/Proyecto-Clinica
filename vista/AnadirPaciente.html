@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+    <H1>Añadir Pacientes</H1>
+    <div class="navbar navbar-expand-lg bg-light">
+        <nav class="nav nav-tabs">
+            <a class="nav-link active" aria-current="page" href="http://localhost:3000/agregarPaciente">Agregar Paciente</a>
+            <a class="nav-link active" aria-current="page"  href="http://localhost:3000/agregarDoctor">Agregar Doctor</a>
+            <a class="nav-link active" aria-current="page" href="http://localhost:3000/VerDoctores">ver Doctores</a>
+            <a class="nav-link active" aria-current="page" href="http://localhost:3000/VerPacientes">ver Pacientes</a>
+            <a class="nav-link active" aria-current="page" href="http://localhost:3000/AgregarTurno">Asignar Turno</a>
+            <a class="nav-link active" aria-current="page" href="http://localhost:3000/MostarTurno">listar turno</a>
+            
+        </nav>
+     </div>
+    <h1>A continuacion Ingrese los datos correspondientes</h1>
+    <form action="http://localhost:3000/agregarPaciente" method="post">
+        <p><label>Nombre</label><label for="inputPassword" class="col-sm-2 col-form-label"><input type="text" name="name"></label></p>
+        <p><label>Apellido</label><label for="inputPassword" class="col-sm-2 col-form-label"><input type="text" name="apellido"></label></p>
+        <p><label>Edad</label><label for="inputPassword" class="col-sm-2 col-form-label"><input type="number" name="edad"></label></p>
+        <p><label>DNI</label><label for="inputPassword" class="col-sm-2 col-form-label"><input type="number" name="dni"></label></p>
+        <p><label>Obra Social</label for="inputPassword" class="col-sm-2 col-form-label"><label><input type="text" name="obra_social"></label></p>
+        <input type="submit" value="send" class="btn btn-secondary">
+    </form>
+    <script src="" async defer></script>
+</body>
+</html>

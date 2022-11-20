@@ -3,39 +3,75 @@ const express=require('express');
 const path=require('path');
 const app=express();
 const port=3000;
+const funcion=require('./app');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+//cargar el menu
 app.get('/',(request,response)=>{
-    //response.send('hello Expres.... ho tambien hola mundo desde node js me va a c9istar un moston.! :)');
-  // response.sendFile(path.join(__dirname,'./prueba/perfil.html'));
-  response.sendFile(path.join(__dirname,'./prueba/ClinicaSA.html'));  
+   
+  response.sendFile(path.join(__dirname,'./vista/ClinicaSA.html'));  
 });
-app.get('/Anadir',(request,response)=>{
-response.sendFile(path.join(__dirname,'./prueba/Anadir.html'));
+//formulario para añadir pacientes
+app.get('/agregarPaciente',(request,response)=>{
+response.sendFile(path.join(__dirname,'./vista/AnadirPaciente.html'));
+
 });
-app.post('/home',(request,response)=>{
+//guardo los pacientes en la unidad local
+app.post('/agregarPaciente',(request,response)=>{
   console.log('llego un post Añadir');
-  response.send(request.body);
+  funcion.cargarPacientes(request.body);
+  response.redirect('/agregarPaciente')
+ 
+
+  
+  
+
 });
-app.get('/AnadirD',(request,response)=>{
-response.sendFile(path.join(__dirname,'./prueba/AnadirD.html'));
+//formulario para añadir doctores
+app.get('/agregarDoctor',(request,response)=>{
+response.sendFile(path.join(__dirname,'./vista/AnadirDoctor.html'));
 });
-app.post('/home1',(request,response)=>{
+//guardar los doctores en la unidad local
+app.post('/agregarDoctor',(request,response)=>{
   console.log('llego un post Añadir');
-  response.send(request.body);
+  funcion.cargarDoctores(request.body);
+  response.redirect('/agregarDoctor');
 });
-app.get('/VerD',(request,response)=>{ 
-response.sendFile(path.join(__dirname,'./prueba/VerD.html'));
+app.get('/VerPacientes',(request,response)=>{ 
+response.sendFile(path.join(__dirname,'./vista/VerPacientes.html'));
 });
-app.get('/VerP',(request,response)=>{
-response.sendFile(path.join(__dirname,'./prueba/VerP.html'));
+// ver pacientes en en html 
+app.get('/VerPacientesTable',(request,response)=>{
+var listarPacientes=funcion.mostrarPacientes();
+response.send(listarPacientes);
 });
-app.get('/AnadirT',(request,response)=>{
-response.sendFile(path.join(__dirname,'./prueba/AnadirT.html'));
+app.get('/VerDoctores',(request,response)=>{ 
+  response.sendFile(path.join(__dirname,'./vista/VerDoctores.html'));
+  });
+//ver doctores por html
+app.get('/VerDoctoresTable',(request,response)=>{
+  var listarDoctores=funcion.mostrarDoctores();
+  response.send(listarDoctores);
+  });
+app.get('/AgregarTurno',(request,response)=>{
+response.sendFile(path.join(__dirname,'./vista/AnadirTurno.html'));
 });
-app.get('/EliminarT',(request,response)=>{
-response.sendFile(path.join(__dirname,'./prueba/EliminarT.html'));
+//cargo un turno
+app.post('/agregarTurno',(request,response)=>{
+  console.log('llego un post Añadir');
+  funcion.gestionarTurno(request.body);
+  response.redirect('/agregarTurno');
 });
+app.get('/MostarTurno',(request,response)=>{
+  response.sendFile(path.join(__dirname,'./vista/ListarTurnos.html'));
+  });
+  //ver turnos 
+app.get('/mostrarTurnosTabla',(request,response)=>{
+  var listarTurnos=funcion.mostarTurnos();
+  response.send(listarTurnos);
+  });
 app.listen(port,()=>{
     console.log(`Expres listen on port ${port}!`);
 })
+
