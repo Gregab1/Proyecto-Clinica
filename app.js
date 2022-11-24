@@ -93,4 +93,16 @@ function gestionarTurno(atributo){
 function mostarTurnos(){
     return turnos;
 }
-module.exports = { cargarPacientes,cargarDoctores,mostrarPacientes,mostrarDoctores,gestionarTurno,mostarTurnos }
+function eliminarTurno(turno){
+var nroTurno = turno.numeroDeRegistro;
+turnos.splice(nroTurno,1);
+console.log(turnos);
+var datosTurno=JSON.stringify(turnos);
+     fs.writeFile('./modelo/turnos.txt',datosTurno,(error,datos)=>{
+         if(error){
+             console.log('archivo no leido');
+         }else{
+            console.log('escritura exitosa');}
+       });
+}
+module.exports = { cargarPacientes,cargarDoctores,mostrarPacientes,mostrarDoctores,gestionarTurno,mostarTurnos,eliminarTurno }
